@@ -1,0 +1,74 @@
+@model IEnumerable<DAL.Models.Product>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Lista produktów</h1>
+
+<form asp-controller="Product" asp-action="Index">
+    <p>
+        Szukaj: <input type="text" name="SearchString">
+        <input type="submit" value="Szukaj" />
+    </p>
+</form>
+
+<p>
+    <a asp-action="Create">Dodaj nowy</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Typ materiału
+            </th>
+            <th>
+                Waga
+            </th>
+            <th>
+                Charakterystyka
+            </th>
+            <th>
+                Komentarz
+            </th>
+            <th>
+                Data
+            </th>
+            <th>
+                TagId
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaterialType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Weight)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Characeteristic)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Comments)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TagId)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+                    <a class="btn btn-danger" asp-controller="Product" asp-action="Delete" asp-route-id="@item.Id" onclick="return confirm('Jesteś pewny?')">Usuń</a>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

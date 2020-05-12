@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewData["Title"] = "VerifyAccount";
+}
+
+<h1>Weryfikacja konta</h1>
+
+@if (ViewBag.Status != null && Convert.ToBoolean(ViewBag.Status))
+{
+    <div class="alert alert-success">
+        Twoje konto zostało aktywowane!
+    </div>
+}
+else
+{
+    <div class="alert alert-danger">
+        <strong>Błąd!</strong>@ViewBag.Message
+    </div>
+}
+

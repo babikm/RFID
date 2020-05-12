@@ -1,0 +1,57 @@
+@model IEnumerable<DAL.Models.Reader>
+
+@{
+    ViewData["Title"] = "Lista czytników";
+}
+
+<h1>Lista czytników</h1>
+
+<p>
+    <a asp-action="Create">Dodaj czytnik</a>
+    <a asp-action="Create">Dodaj lokalizację</a>
+
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ReaderNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Location)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ReaderNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Location)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    <a class="btn btn-primary" asp-controller="Reader" asp-action="Edit" asp-route-id="@item.Id">Edytuj</a>
+                    <a class="btn btn-info" asp-controller="Reader" asp-action="Details" asp-route-id="@item.Id">Szczegóły</a>
+                    <a class="btn btn-danger" asp-controller="Reader" asp-action="Delete" asp-route-id="@item.Id" onclick="return confirm('Jesteś pewny?')">Usuń</a>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

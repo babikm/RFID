@@ -1,0 +1,81 @@
+﻿@model DAL.Models.Product
+
+@{
+    ViewData["Title"] = "Edit";
+
+}
+
+<h1>Edit</h1>
+<h4>Product</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            @Html.ValidationMessage("nullTagId", new { @class = "text-danger" })
+            @*@Html.ValidationMessage("tagId", new { @class = "text-danger" })*@
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="ExtruderName" class="control-label"></label>
+                @Html.DropDownListFor(x => x.ExtruderName.Id, new SelectList(ViewBag.extList, "Id", "Name"), "--Wybierz--", new { @class = "form-control" })
+
+                @*<input asp-for="ExtruderName" class="form-control" />*@
+                <span asp-validation-for="ExtruderName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TagId" class="control-label"></label>
+                <input asp-for="TagId" class="form-control" />
+                <span asp-validation-for="TagId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CompanyName" class="control-label"></label>
+                <input asp-for="CompanyName" class="form-control" />
+                <span asp-validation-for="CompanyName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MaterialType" class="control-label"></label>
+                <input asp-for="MaterialType" class="form-control" />
+                <span asp-validation-for="MaterialType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Characeteristic" class="control-label"></label>
+                <input asp-for="Characeteristic" class="form-control" />
+                <span asp-validation-for="Characeteristic" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Weight" class="control-label"></label>
+                <input asp-for="Weight" class="form-control" />
+                <span asp-validation-for="Weight" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Comments" class="control-label"></label>
+                <input asp-for="Comments" class="form-control" />
+                <span asp-validation-for="Comments" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Worker1" class="control-label"></label>
+                @Html.DropDownListFor(x => x.Worker1.Id, new SelectList(ViewBag.list, "Id", "Name"), "---Select---", new { @class = "form-control" })
+                @*<input asp-for="Worker1" class="form-control" />*@
+
+                <span asp-validation-for="Worker1.Id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Worker2" class="control-label"></label>
+                @*<input asp-for="Worker2.Name" class="form-control" />*@
+                @Html.DropDownListFor(x => x.Worker2.Id, new SelectList(ViewBag.list1, "Id", "Name"), "---Select---", new { @class = "form-control" })
+                <span asp-validation-for="Worker2" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

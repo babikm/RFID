@@ -1,0 +1,42 @@
+﻿@model IEnumerable<DAL.Models.Location>
+
+@{
+    ViewData["Title"] = "Lista czytników";
+}
+
+<h1>Lokalizacje czytników</h1>
+
+<p>
+    <a asp-action="Create">Dodaj nowy</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    <a class="btn btn-primary" asp-controller="Extruder" asp-action="Edit" asp-route-id="@item.Id">Edytuj</a>
+                    <a class="btn btn-danger" asp-controller="Extruder" asp-action="Delete" asp-route-id="@item.Id" onclick="return confirm('Jesteś pewny?')">Usuń</a>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
